@@ -1,6 +1,6 @@
 <template>
   <Header></Header>
-  <RouterView/>
+  <RouterView :message="message"/>
 </template>
 
 <script>
@@ -8,7 +8,18 @@ import { RouterView } from 'vue-router';
 import Header from './components/Header.vue';
 
 export default{
-    components: { Header }
+    components: { Header },
+    data(){
+      return{
+        message: 'code'
+      }
+    },
+    mounted(){
+      // Пример проверки перехода внутри комопнента 
+      // this.$router.beforeEach((to, from, next) => {
+      //     next()
+      // })
+    }
 }
 </script>
 
