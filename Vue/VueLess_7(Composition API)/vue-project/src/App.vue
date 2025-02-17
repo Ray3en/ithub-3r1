@@ -18,12 +18,14 @@
     <p>{{ users.name }}</p>
     <p>{{ users.age }}</p>
   </div>
-  <Example :message="message"></Example>
+  <Example @toUpperCace="toUpperCace" :message="message"></Example>
+  <UserList v-if="counter <= 0"></UserList>
 </template>
 
 <script setup>
 import { reactive, ref } from 'vue';
 import Example from './components/Example.vue';
+import UserList from './components/UserList.vue';
 
  // ref как правило используется для примитивов (можем напрямую через .value менять значеие) 
   let message = ref('Hello world')
