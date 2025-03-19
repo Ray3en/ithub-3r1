@@ -10,6 +10,7 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 })
 export class FormExampleComponent {
   public userForm: FormGroup
+  public submited: boolean = false
 
   constructor(private formBulder: FormBuilder){
     // регистрация полей (и валидация)
@@ -20,6 +21,7 @@ export class FormExampleComponent {
   }
 
   handleSubmit(){
+    this.submited = true
     // userForm.valid - валидация всех инпут полей
     if (this.userForm.valid){
       // userForm.value - объект со всеми зарегистрированными полями

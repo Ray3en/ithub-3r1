@@ -4,9 +4,9 @@
             First name
             <input formControlName="firstName" />
         </label>
-            @if(userForm.controls['firstName'].errors?.['required']){
-                <p [style]="{color: 'red'}">Имя обязательный!</p>
-            } @else if(userForm.controls['firstName'].errors?.['minlength']){
+            @if(submited && userForm.controls['firstName'].errors?.['required']){
+                <p [style]="{color: 'red'}">Имя обязательное!</p>
+            } @else if(submited && userForm.controls['firstName'].errors?.['minlength']){
                 <p [style]="{color: 'red'}">Минимальная длина - 4!</p>
             }
     </div>
@@ -15,12 +15,12 @@
             Age
             <input type="number" formControlName="age" />
         </label>
-        @if(userForm.controls['age'].errors?.['required']){
-        <p [style]="{color: 'red'}">Возраст обязательный!</p>
-        } @else if (userForm.controls['age'].errors?.['max']){
-        <p [style]="{color: 'red'}">Максимальное знаение - 100!</p>
-        } @else if (userForm.controls['age'].errors?.['min']){
-        <p [style]="{color: 'red'}">Минимальное знаение - 1!</p>
+        @if(submited && userForm.controls['age'].errors?.['required']){
+            <p [style]="{color: 'red'}">Возраст обязательный!</p>
+        } @else if (submited && userForm.controls['age'].errors?.['max']){
+            <p [style]="{color: 'red'}">Максимальное знаение - 100!</p>
+        } @else if (submited && userForm.controls['age'].errors?.['min']){
+            <p [style]="{color: 'red'}">Минимальное знаение - 1!</p>
         }
     </div>
     <!-- <input type="submit" [disabled]="!userForm.valid"/> -->
