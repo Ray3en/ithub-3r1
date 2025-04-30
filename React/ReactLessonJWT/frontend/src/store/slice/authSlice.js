@@ -12,7 +12,13 @@ export const authSlice = createSlice({
         error: null
     },
     reducers: {
-
+        logout(state) {
+            state.userName = ''
+            state.isAuth = false
+            state.token = null
+            state.refreshToken = null
+            localStorage.removeItem('token')
+        }
     },
     extraReducers: (builder) => {
         builder
@@ -27,17 +33,14 @@ export const authSlice = createSlice({
                 localStorage.setItem('token', JSON.stringify({ accessToken, refreshToken }))
             })
             .addCase(authAction.rejected, (state, action) => {
-                state.error = action.payload
+                state.error = action.payload.response.data.message
                 state.token = null
                 state.loading = false
                 state.refreshToken = null
                 localStorage.removeItem('token')
             })
             .addCase(authAction.pending, (state, action) => {
-                state.isAuth = false
-                state.error = action.payload
-                state.token = null
-                state.refreshToken = null
+                state.error = null
                 state.loading = true
             })
 
@@ -52,7 +55,6 @@ export const authSlice = createSlice({
                 state.token = null
                 state.refreshToken = null
                 localStorage.removeItem('token')
-                state.error = action.payload
             })
             .addCase(verifyAction.pending, (state, action) => {
                 state.loading = true
@@ -64,5 +66,5 @@ export const authSlice = createSlice({
 export default authSlice.reducer
 
 export const {
-
-} = authSlice.reducer
+    logout
+} = authSlice.actions
